@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 1. JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Search here" id="searchText">
+    <input type="button" value="search" onclick="showSearch()">
+    <!-- 3. FRONTEND -->
+    <div class="wikipedia">
+
+    </div>
+</body>
+    <!--2. BACKEND! -->
+    <!-- this is for getting information-->
+    <script>
+        // step 4: Parse the data
+        var searchValue = document.getElementById("searchText");
+        
+        function showSearch(){
+            $(".wikipedia").html('');
+            $.getJSON( `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&origin=*&formatversion=2&exintro&explaintext&redirects=1&titles=${searchValue.value}`, 
+            function(data) {
+        wikiData = data["query"]["pages"]["0"]["extract"];
+
+        //$( ".inner" ).append( "<p>Test</p>" );
+                $(".wikipedia").append(wikiData)
+            });
+            
+        }
+
+        
+    </script>
+    <script>
+        var data = document.getElementById("shin_cute").value;
+        function showAPI(){
+            console.log(data)
+        }
+    </script>
+</html>
